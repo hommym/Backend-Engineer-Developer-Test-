@@ -23,6 +23,9 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 // routes
 app.use("/inventory", inventoryRoute_1.inventoryRouter);
+app.use("/", (req, res) => {
+    res.status(404).send("Resource not found");
+});
 // error handling middlware
 app.use(errorHandler_1.errorHandler);
 const port = process.env.PORT ? process.env.PORT : 8000;

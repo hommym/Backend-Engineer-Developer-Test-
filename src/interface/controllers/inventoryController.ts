@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response,} from "express";
 import asyncHandler from "express-async-handler";
 import { createInventoryItem } from "../../uses-cases/createInventoryItem";
 import { Inventory } from "../../domain/entities/Inventory";
