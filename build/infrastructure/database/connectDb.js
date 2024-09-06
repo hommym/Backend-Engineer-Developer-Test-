@@ -16,12 +16,17 @@ exports.connectToDatabase = exports.sequelize = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const sequelize_1 = require("sequelize");
-exports.sequelize = new sequelize_1.Sequelize(process.env.DatabaseUri, { dialectOptions: { ssl: { require: true } } });
+const defineTableStructures_1 = require("./defineTableStructures");
+exports.sequelize = new sequelize_1.Sequelize(process.env.DatabaseUri, { dialectOptions: { ssl: { require: true } }, logging: false });
 const connectToDatabase = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Establishing Database connection...");
     // connect to the database
     yield exports.sequelize.authenticate();
     console.log("Database connection sucessful");
+    // models definition
+    console.log("Defining Tables Structures...");
+    (0, defineTableStructures_1.defineAllTablesStructures)();
+    console.log("Table Structures defined");
     //models syncronization
     console.log("Database syncronising..");
     yield exports.sequelize.sync();
