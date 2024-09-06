@@ -51,5 +51,5 @@ export const deleteInventoryItemController = asyncHandler(async (req: Request, r
   //   checking if id is a number
   checkIdValidy(id);
   await deleteInventoryItem(Number(id))
-  res.status(204).send("Item has been succesfully deleted");
+  res.status(204).end();
 });

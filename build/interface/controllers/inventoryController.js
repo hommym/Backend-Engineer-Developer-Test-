@@ -58,5 +58,5 @@ exports.deleteInventoryItemController = (0, express_async_handler_1.default)((re
     //   checking if id is a number
     checkIdValidy(id);
     yield (0, deleteInventoryItem_1.deleteInventoryItem)(Number(id));
-    res.status(204).send("Item has been succesfully deleted");
+    res.status(204).end();
 }));
