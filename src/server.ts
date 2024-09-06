@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectToDatabase } from "./infrastructure/database/connectDb";
+import { errorHandler } from "./interface/middlewares/errorHandler";
+import { inventoryRouter } from "./interface/routes/inventoryRoute";
 dotenv.config();
 
 const app = express();
@@ -9,8 +11,9 @@ const app = express();
 app.use(express.json());
 
 // routes
-
+app.use("/inventory", inventoryRouter);
 // error handling middlware
+app.use(errorHandler)
 
 const port = process.env.PORT ? process.env.PORT : 8000;
 

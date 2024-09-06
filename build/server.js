@@ -15,12 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const connectDb_1 = require("./infrastructure/database/connectDb");
+const errorHandler_1 = require("./interface/middlewares/errorHandler");
+const inventoryRoute_1 = require("./interface/routes/inventoryRoute");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 // middlewares
 app.use(express_1.default.json());
 // routes
+app.use("/inventory", inventoryRoute_1.inventoryRouter);
 // error handling middlware
+app.use(errorHandler_1.errorHandler);
 const port = process.env.PORT ? process.env.PORT : 8000;
 const launchApp = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
